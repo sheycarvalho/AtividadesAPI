@@ -1,5 +1,6 @@
 ﻿using ChapterProject1.Models;
 using ChapterProject1.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace ChapterProject1.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LivroController : ControllerBase
     {
         private readonly LivroRepository _livroRepository;
@@ -53,7 +55,7 @@ namespace ChapterProject1.Controllers
 
 
 
-
+        [Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Cadastrar(Livro l)
         {
